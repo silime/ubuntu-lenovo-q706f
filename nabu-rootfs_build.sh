@@ -6,7 +6,7 @@ then
   exit
 fi
 
-VERSION="23.10"
+VERSION="24.04"
 
 truncate -s 6G rootfs.img
 mkfs.ext4 rootfs.img
@@ -22,10 +22,10 @@ mount --bind /dev/pts rootdir/dev/pts
 mount --bind /proc rootdir/proc
 mount --bind /sys rootdir/sys
 
-echo "nameserver 1.1.1.1" | tee rootdir/etc/resolv.conf
-echo "xiaomi-nabu" | tee rootdir/etc/hostname
+echo "nameserver 8.8.8.8" | tee rootdir/etc/resolv.conf
+echo "lenovo-q706f" | tee rootdir/etc/hostname
 echo "127.0.0.1 localhost
-127.0.1.1 xiaomi-nabu" | tee rootdir/etc/hosts
+127.0.1.1 lenovo-q706f" | tee rootdir/etc/hosts
 
 if uname -m | grep -q aarch64
 then
@@ -60,11 +60,11 @@ chroot rootdir apt install -y rmtfs protection-domain-mapper tqftpserv
 #Remove check for "*-laptop"
 sed -i '/ConditionKernelVersion/d' rootdir/lib/systemd/system/pd-mapper.service
 
-cp /home/runner/work/ubuntu-xiaomi-nabu/ubuntu-xiaomi-nabu/xiaomi-nabu-debs_$2/*-xiaomi-nabu.deb rootdir/tmp/
-chroot rootdir dpkg -i /tmp/linux-xiaomi-nabu.deb
-chroot rootdir dpkg -i /tmp/firmware-xiaomi-nabu.deb
-chroot rootdir dpkg -i /tmp/alsa-xiaomi-nabu.deb
-rm rootdir/tmp/*-xiaomi-nabu.deb
+cp /home/runner/work/ubuntu-lenovo-q706f/ubuntu-lenovo-q706f/lenovo-q706f-debs/*-lenovo-q706f.deb rootdir/tmp/
+chroot rootdir dpkg -i /tmp/linux-lenovo-q706f.deb
+chroot rootdir dpkg -i /tmp/firmware-lenovo-q706f.deb
+chroot rootdir dpkg -i /tmp/alsa-lenovo-q706f.deb
+rm rootdir/tmp/*-lenovo-q706f.deb
 
 
 #EFI

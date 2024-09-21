@@ -1,0 +1,6 @@
+Package: linux-lenovo-q706f
+Version: 6.11.0-sm8250
+Architecture: arm64
+Maintainer: chalkin <chalkin@yeah.net>
+Section: kernel
+Description: Kernel and Modules for Xiaoxin Pad Pro 12.6
