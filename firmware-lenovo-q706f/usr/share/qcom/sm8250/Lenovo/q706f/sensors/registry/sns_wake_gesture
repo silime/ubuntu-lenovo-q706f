@@ -1,0 +1,1 @@
+{"sns_wake_gesture":{"owner":"sns_wake_gesture","require_rate":{"type":"flt","ver":"0","data":"50.000000"},"window_size":{"type":"int","ver":"0","data":"3"}}}

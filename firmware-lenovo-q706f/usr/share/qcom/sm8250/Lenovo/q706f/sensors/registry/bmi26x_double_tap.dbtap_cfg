@@ -1,0 +1,1 @@
+{"bmi26x_double_tap.dbtap_cfg":{"owner":"sns_bmi26x","enable":{"type":"int","ver":"0","data":"1"},"sens_thres":{"type":"int","ver":"0","data":"3"},"max_gest_dur":{"type":"int","ver":"0","data":"400"},"quite_time_after_gest":{"type":"int","ver":"0","data":"400"}}}
