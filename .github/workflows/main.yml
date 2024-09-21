@@ -36,6 +36,18 @@ jobs:
           # Artifact name
           name: lenovo-q706f-debs
           path: ${{ github.workspace }}/*.deb
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          body: packages
+          tag_name: packages
+          draft: false
+          prerelease: false
+          files: |
+            ${{ github.workspace }}/*.deb
           
   rootfs:
     # The type of runner that the job will run on
