@@ -1,6 +1,6 @@
 git clone https://github.com/silime/linux.git --branch sm8250/6.11-release --depth 1 linux
 cd linux
-curl https://github.com/silime/ArchLinux-Packages/raw/refs/heads/main/linux-sm8250/config -o .config
+curl https://raw.githubusercontent.com/silime/ArchLinux-Packages/refs/heads/main/linux-sm8250/config -o .config
 make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
 _kernel_version="$(make kernelrelease -s)"
 mkdir ../linux-lenovo-q706f/boot
