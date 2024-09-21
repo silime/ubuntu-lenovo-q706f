@@ -44,31 +44,31 @@ fi
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:\$PATH
 export DEBIAN_FRONTEND=noninteractive
 
-chroot rootdir apt update
-chroot rootdir apt upgrade -y
+chroot rootdir qemu-aarch64-static /usr/bin/apt update
+chroot rootdir qemu-aarch64-static /usr/bin/apt upgrade -y
 
 #u-boot-tools breaks grub installation
-chroot rootdir apt install -y bash-completion sudo ssh nano u-boot-tools- $1
+chroot rootdir qemu-aarch64-static /usr/bin/apt install -y bash-completion sudo ssh nano u-boot-tools- $1
 
 #chroot rootdir gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts-only-mounted true
 
 
 
 #Device specific
-chroot rootdir apt install -y rmtfs protection-domain-mapper tqftpserv
+chroot rootdir qemu-aarch64-static /usr/bin/apt install -y rmtfs protection-domain-mapper tqftpserv
 
 #Remove check for "*-laptop"
 sed -i '/ConditionKernelVersion/d' rootdir/lib/systemd/system/pd-mapper.service
 
 cp /home/runner/work/ubuntu-lenovo-q706f/ubuntu-lenovo-q706f/lenovo-q706f-debs/*-lenovo-q706f.deb rootdir/tmp/
-chroot rootdir dpkg -i /tmp/linux-lenovo-q706f.deb
-chroot rootdir dpkg -i /tmp/firmware-lenovo-q706f.deb
-chroot rootdir dpkg -i /tmp/alsa-lenovo-q706f.deb
+chroot rootdir qemu-aarch64-static /usr/bin/dpkg -i /tmp/linux-lenovo-q706f.deb
+chroot rootdir qemu-aarch64-static /usr/bin/dpkg -i /tmp/firmware-lenovo-q706f.deb
+chroot rootdir qemu-aarch64-static /usr/bin/dpkg -i /tmp/alsa-lenovo-q706f.deb
 rm rootdir/tmp/*-lenovo-q706f.deb
 
 
 #EFI
-chroot rootdir apt install -y grub-efi-arm64
+chroot rootdir qemu-aarch64-static /usr/bin/apt install -y grub-efi-arm64
 
 sed --in-place 's/^#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/' rootdir/etc/default/grub
 sed --in-place 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT=""/' rootdir/etc/default/grub
@@ -84,7 +84,7 @@ PARTLABEL=esp /boot/efi vfat umask=0077 0 1" | tee rootdir/etc/fstab
 mkdir rootdir/var/lib/gdm
 touch rootdir/var/lib/gdm/run-initial-setup
 
-chroot rootdir apt clean
+chroot rootdir qemu-aarch64-static /usr/bin/apt clean
 
 if uname -m | grep -q aarch64
 then
