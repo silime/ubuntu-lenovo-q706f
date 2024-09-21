@@ -13,8 +13,8 @@ mkfs.ext4 rootfs.img
 mkdir rootdir
 mount -o loop rootfs.img rootdir
 
-wget https://cdimage.ubuntu.com/ubuntu-base/releases/$VERSION/release/ubuntu-base-$VERSION-base-arm64.tar.gz
-tar xzvf ubuntu-base-$VERSION-base-arm64.tar.gz -C rootdir
+wget https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/ubuntu-base-24.04.1-base-arm64.tar.gz
+tar xzvf ubuntu-base-24.04.1-base-arm64.tar.gz -C rootdir
 #rm ubuntu-base-$VERSION-base-arm64.tar.gz
 
 mount --bind /dev rootdir/dev
