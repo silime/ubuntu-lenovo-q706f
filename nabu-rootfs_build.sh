@@ -83,7 +83,7 @@ PARTLABEL=esp /boot/efi vfat umask=0077 0 1" | tee rootdir/etc/fstab
 
 mkdir rootdir/var/lib/gdm
 touch rootdir/var/lib/gdm/run-initial-setup
-
+chroot rootdir userdel ubuntu
 chroot rootdir apt clean
 
 if uname -m | grep -q aarch64
