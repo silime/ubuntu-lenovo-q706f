@@ -1,0 +1,6 @@
+Package: firmware-lenovo-q706f
+Version: 1.0
+Architecture: arm64
+Maintainer: chalkin <chalkin@yeah.net>
+Depends: linux-firmware
+Description: Firmware blobs for Xiaoxin Pad Pro 12.6
