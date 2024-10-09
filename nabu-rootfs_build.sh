@@ -68,7 +68,7 @@ rm rootdir/tmp/*-lenovo-q706f.deb
 
 
 #EFI
-chroot rootdir apt install -y grub-efi-arm64
+chroot rootdir apt install -y grub-efi-arm64 pulseaudio
 
 sed --in-place 's/^#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/' rootdir/etc/default/grub
 sed --in-place 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT=""/' rootdir/etc/default/grub
