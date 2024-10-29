@@ -61,7 +61,8 @@ chroot rootdir apt install -y bash-completion sudo ssh nano u-boot-tools- $1
 # sed -i '/ConditionKernelVersion/d' rootdir/lib/systemd/system/pd-mapper.service
 
 cp /home/runner/work/ubuntu-lenovo-q706f/ubuntu-lenovo-q706f/lenovo-q706f-debs/*.deb rootdir/tmp/
-chroot rootdir dpkg -i /tmp/linux-image-*.deb
+mv $(realpath rootdir/tmp/linux-image-*.deb) rootdir/tmp/linux-image.deb
+chroot rootdir dpkg -i /tmp/linux-image.deb
 chroot rootdir apt install -y /tmp/firmware-lenovo-q706f.deb
 chroot rootdir dpkg -i /tmp/alsa-lenovo-q706f.deb
 rm rootdir/tmp/*-lenovo-q706f.deb
@@ -85,7 +86,6 @@ mkdir rootdir/var/lib/gdm
 touch rootdir/var/lib/gdm/run-initial-setup
 chroot rootdir rm -r /home/ubuntu
 chroot rootdir apt clean
-
 
 # Make Android Boot Image
 git clone https://android.googlesource.com/platform/system/tools/mkbootimg tools --depth=1
