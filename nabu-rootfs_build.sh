@@ -62,8 +62,8 @@ chroot rootdir apt install -y bash-completion sudo ssh nano u-boot-tools- $1
 
 cp /home/runner/work/ubuntu-lenovo-q706f/ubuntu-lenovo-q706f/lenovo-q706f-debs/*.deb rootdir/tmp/
 mv $(realpath rootdir/tmp/linux-image-*.deb) rootdir/tmp/linux-image.deb
-chroot rootdir dpkg -i /tmp/linux-image.deb
 chroot rootdir apt install -y /tmp/firmware-lenovo-q706f.deb
+chroot rootdir dpkg -i /tmp/linux-image.deb
 chroot rootdir dpkg -i /tmp/alsa-lenovo-q706f.deb
 rm rootdir/tmp/*-lenovo-q706f.deb
 
@@ -93,7 +93,7 @@ mkdir out
 cp rootdir/boot/vmlinuz-* out/kernel
 cp rootdir/boot/initrd.img-* out/ramdisk
 cp rootdir/usr/lib/linux-*/qcom/sm8250-lenovo-q706f.dtb out/dtb
-tools/mkbootimg.py --header_version 2 --os_version 11.0.0 --os_patch_level 2024-05 --kernel out/kernel --ramdisk out/ramdisk --dtb out/dtb --pagesize 0x00001000 --base 0x00000000 --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --second_offset 0x00000000 --tags_offset 0x00000100 --dtb_offset 0x0000000001f00000 --board "" --cmdline "root=PARTLABEL=userdata rw rootwait audit=0 splash plymouth.ignore-serial-consoles" -o lenovo-q706f-boot.img
+tools/mkbootimg.py --header_version 2 --os_version 11.0.0 --os_patch_level 2024-05 --kernel out/kernel --ramdisk out/ramdisk --dtb out/dtb --pagesize 0x00001000 --base 0x00000000 --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --second_offset 0x00000000 --tags_offset 0x00000100 --dtb_offset 0x0000000001f00000 --board "" --cmdline "root=PARTLABEL=userdata rw rootwait audit=0 splash plymouth.ignore-serial-consoles slot_suffix=_b" -o lenovo-q706f-boot.img
 cp lenovo-q706f-boot.img rootdir/boot/boot.img
 
 if uname -m | grep -q aarch64
