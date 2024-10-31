@@ -1,6 +1,8 @@
 git clone https://github.com/silime/linux.git --branch sm8250/6.11-release linux
 cd linux
 curl https://raw.githubusercontent.com/silime/ArchLinux-Packages/refs/heads/main/linux-sm8250/config -o .config
+sed -i 's/^# CONFIG_FW_LOADER_COMPRESS_ZSTD is not set/CONFIG_FW_LOADER_COMPRESS_ZSTD=y/' .config
+sed -i 's/^CONFIG_FW_LOADER_COMPRESS_XZ=y/# CONFIG_FW_LOADER_COMPRESS_XZ is not set/' .config
 export LOCALVERSION=
 make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- KBUILD_DEBARCH=arm64 KDEB_CHANGELOG_DIST=mobile deb-pkg
 _kernel_version="$(make kernelrelease -s)"
